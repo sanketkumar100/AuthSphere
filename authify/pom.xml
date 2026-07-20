@@ -52,7 +52,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-            <version>1.18.46</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -126,7 +125,6 @@
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-                            <version>1.18.46</version>
 						</exclude>
 					</excludes>
 				</configuration>
