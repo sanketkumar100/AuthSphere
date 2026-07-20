@@ -24,7 +24,7 @@ public class ProfileServiceImpl implements ProfileService
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
-    @Override
+    /*@Override
     public ProfileResponse createProfile(ProfileRequest request)
     {
         UserEntity newProfile = convertToUserEntity(request);
@@ -37,6 +37,31 @@ public class ProfileServiceImpl implements ProfileService
         //if user exists then throw exception
         throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already Exists");
 
+    }*/
+
+    @Override
+    public ProfileResponse createProfile(ProfileRequest request) {
+
+        System.out.println("STEP 1");
+
+        boolean exists = userRepository.existsByEmail(request.getEmail());
+
+        System.out.println("STEP 2 exists = " + exists);
+
+        if (!exists) {
+
+            System.out.println("STEP 3 before save");
+
+            UserEntity saved = userRepository.save(convertToUserEntity(request));
+
+            System.out.println("STEP 4 after save");
+
+            return convertToProfileResponse(saved);
+        }
+
+        System.out.println("STEP 5 email exists");
+
+        throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already Exists");
     }
 
     @Override
