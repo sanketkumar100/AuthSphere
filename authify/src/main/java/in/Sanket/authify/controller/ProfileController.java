@@ -26,9 +26,13 @@ public class ProfileController
         ProfileResponse response=profileService.createProfile(request);
         System.out.println("USER CREATED");
         //TODO: Later we will send welcome email here.
-        emailService.sendWelcomeEmail(response.getEmail(), response.getName());
-        System.out.println("EMAIL SENT");
-
+        try {
+            emailService.sendWelcomeEmail(response.getEmail(), response.getName());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         return response;
     }
 
