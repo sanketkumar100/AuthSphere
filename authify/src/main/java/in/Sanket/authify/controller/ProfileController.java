@@ -22,7 +22,7 @@ public class ProfileController
     @ResponseStatus(HttpStatus.CREATED)
     public ProfileResponse register(@Valid @RequestBody ProfileRequest request)//Handler Method //@RequestBody first converts JSON into DTO object, then @Valid triggers Bean Validation on that object before entering the controller method body.
     {
-        //System.out.println("REGISTER METHOD HIT");
+        System.out.println("REGISTER METHOD HIT");
         ProfileResponse response=profileService.createProfile(request);
         //TODO: Later we will send welcome email here.
         emailService.sendWelcomeEmail(response.getEmail(), response.getName());
