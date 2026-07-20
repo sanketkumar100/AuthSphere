@@ -21,7 +21,7 @@ public class EmailService
     @Value("${spring.mail.properties.mail.smtp.from}")  //injecting the from email from the application.properties
     private String fromEmail;
 
-    public void sendWelcomeEmail(String toEmail, String name)
+    /*public void sendWelcomeEmail(String toEmail, String name)
     {
         SimpleMailMessage message =  new SimpleMailMessage();
         message.setFrom(fromEmail);
@@ -32,6 +32,27 @@ public class EmailService
         mailSender.send(message); //sendin the email
 
 
+    }*/
+
+    public void sendWelcomeEmail(String toEmail, String name) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom(fromEmail);
+            message.setTo(toEmail);
+            message.setSubject("Welcome to AuthSphere");
+            message.setText(
+                    "Hello " + name +
+                            ",\n\nThanks for registering with us!\n\nRegards,\nAuthSphere Team"
+            );
+
+            mailSender.send(message);
+            System.out.println("WELCOME EMAIL SENT");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("EMAIL ERROR: " + e.getMessage());
+            throw e;
+        }
     }
 
    /* public void sendResetOtpEmail(String toEmail, String otp)
