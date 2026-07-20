@@ -24,8 +24,10 @@ public class ProfileController
     {
         System.out.println("REGISTER METHOD HIT");
         ProfileResponse response=profileService.createProfile(request);
+        System.out.println("USER CREATED");
         //TODO: Later we will send welcome email here.
         emailService.sendWelcomeEmail(response.getEmail(), response.getName());
+        System.out.println("EMAIL SENT");
 
         return response;
     }
