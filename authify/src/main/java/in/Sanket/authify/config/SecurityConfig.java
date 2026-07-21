@@ -4,6 +4,7 @@ package in.Sanket.authify.config;
 import in.Sanket.authify.filter.JwtRequestFilter;
 import in.Sanket.authify.service.AppUserDetailsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -63,14 +64,18 @@ public class SecurityConfig
         return new CorsFilter(corsConfigurationSource());
     }
 
+    @Value("${frontend.url}")
+    private String frontendUrl;
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
-                "http://localhost:5173",
-                "https://auth-sphere-chi.vercel.app"
+                //"http://localhost:5173",
+                //"https://auth-sphere-chi.vercel.app"
+                frontendUrl
         ));
 
         config.setAllowedMethods(List.of(
