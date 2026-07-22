@@ -45,6 +45,7 @@ A full-stack authentication system built using **Spring Boot**, **Spring Securit
 - Thymeleaf
 - JWT (JSON Web Token)
 - Maven
+- Hibernate
 
 ### Database
 
